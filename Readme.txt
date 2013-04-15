@@ -1,0 +1,1 @@
+this is a java-applet project for grab images from web-camera
