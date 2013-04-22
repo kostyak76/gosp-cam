@@ -5,7 +5,7 @@
 	<classpathentry kind="lib" path="lib/lti-civil-no_s_w_t.jar"/>
 	<classpathentry kind="lib" path="lib/swt.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="camera_fmj/lib"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="gosp-cam/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

@@ -6,12 +6,9 @@ import com.lti.civil.awt.AWTImageConverter;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -138,14 +135,18 @@ public class Camera extends JApplet implements CaptureObserver
 			jpeg.encode(AWTImageConverter.toBufferedImage(image));
 
 			bytes = os.toByteArray();
-			String fileDir = "C:/temp/kostya123.jpg";
-			File file = new File(fileDir);
-			fos = new FileOutputStream(file);
-			fos.write(bytes);
-
-			BufferedImage myImage = ImageIO.read(file);
+			
+			//upload image to the server
+			String charset = "UTF-8";
+			String requestURL = "http://www.mysite.ks/index.php/files_upload/upload";
+			MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+            multipart.addFilePartFromBuffImage("image1", "kostya123.jpg", bytes);
+            
+            List<String> response = multipart.finish();
 			// capture only the first image
-			lb.setIcon(new ImageIcon(myImage));
+            for (String line : response) {
+            	lb.setText(line);
+            }
 			lb.setOpaque(true);
 			repaint();
 
